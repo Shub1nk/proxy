@@ -1,18 +1,26 @@
 <template>
   <div class="select-country">
     <select class="form-control form-control-sm">
-      <option value="Ru">RU</option>
-      <option value="USA">USA</option>
-      <option value="DE">DE</option>
-      <option value="CH">CH</option>
-      <option value="AU">AU</option>
+      <option v-for="country in countries" :key="country.item">{{country}}</option>
+      
     </select>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
   export default {
-    name: 'selectCountry'
+    name: 'selectCountry',
+    created() {
+      this.$store.dispatch('getCountryList');
+    },
+    computed: {
+      ...mapGetters(['countries'])
+    },
+    methods: {
+      
+    }
   }
 </script>
 
