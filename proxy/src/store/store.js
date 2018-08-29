@@ -1,9 +1,10 @@
-import Vue from "Vue";
-import Vuex from "Vuex";
+import Vue from "vue";
+import Vuex from "vuex";
 import axios from "axios";
 
 const state = {
-  listProxy: 'хуек'
+  listProxy: "",
+  country: ""
 };
 
 const mutations = {
@@ -13,22 +14,18 @@ const mutations = {
 };
 
 const actions = {
-  getProxyList({commit}) {
+  getProxyList({ commit }) {
     axios
       .get("https://proxyfordevelopers.com/api/proxies/?format=json")
       .then(response => {
-        commit('UPDATE_LIST_PROXY', response.data);
-        // state.listProxy = response.data;
-        // console.log(state.listProxy);
+        commit("UPDATE_LIST_PROXY", response.data);
       });
+    console.log("Перешел в действие");
   }
 };
 
-// getTasksList({ commit }) {
-//   commit('UPDATE_TASKS_LIST', state.tasksList); 
-
 const getters = {
-  // listProxy: state => state.listProxy
+  listProxy: state => state.listProxy
 };
 
 Vue.use(Vuex);

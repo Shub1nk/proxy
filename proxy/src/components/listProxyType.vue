@@ -1,41 +1,33 @@
 <template>
   <ul class="list-group">
-    <li class="list-group-item active">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+    <!-- <li class="list-group-item active">Cras justo odio</li> -->
+    <li
+      v-for="itemProxy in listProxy" :key="itemProxy.id"
+      class="list-group-item">{{ itemProxy.id }}. host: {{itemProxy.host}}</li>    
   </ul>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "listProxyType"
+  name: "listProxyType",  
+  created() {
+    this.$store.dispatch("getProxyList");
+  },
+  computed: {
+    ...mapGetters(["listProxy"])   
+  }
 };
 </script>
 
 <style scoped>
 .list-group {
   height: 519px;
-  background: red;
   overflow: auto;
 }
 
 .list-group-item {
   margin: 0;
-  
 }
-
 </style>

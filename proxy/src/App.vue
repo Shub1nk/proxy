@@ -9,9 +9,6 @@
         <data-proxy/>    
       </div>
     </div>
-    
-    
-    
   </div>
 </template>
 
@@ -20,10 +17,21 @@ import axios from "axios";
 import selectCountry from './components/selectCountry';
 import dataProxy from './components/dataProxy';
 import listProxyType from './components/listProxyType';
-// import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: "app",
+  name: "app",  
+  created() {
+    this.store.dispatch('getProxyList');
+  },
+  // mounted() {
+    // axios
+      // .get("https://proxyfordevelopers.com/api/proxies/?format=json")
+      // .then(response => {
+        // this.$store.listProxy = response.data});        
+        //  console.log(this.$store.getters.listProxy);
+      // },
+
   components: {
     selectCountry,
     dataProxy,
