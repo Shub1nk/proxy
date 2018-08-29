@@ -1,36 +1,36 @@
 <template>
-  <div id="app">
-    <p>Test</p>
-    <ul id="example-1">
-      <li v-for="item in proxy">
-    {{ item }}
-      </li>
-    </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <select-country/>
+        <list-proxy-type/>
+      </div>
+      <div class="col-md-8">
+        <data-proxy/>    
+      </div>
+    </div>
+    
+    
+    
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import selectCountry from './components/selectCountry';
+import dataProxy from './components/dataProxy';
+import listProxyType from './components/listProxyType';
+// import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "app",
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App",
-      proxy: null
-    };
-  },
-  computed: {
-    // proxy ()
-  },
-  mounted() {
-    axios
-      .get("https://proxyfordevelopers.com/api/proxies/?format=json")
-      .then(response => {
-        this.proxy = response.data;
-        console.log(this.proxy);
-      });
+  components: {
+    selectCountry,
+    dataProxy,
+    listProxyType
   }
+  
+  
 };
 </script>
 
@@ -42,6 +42,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+  background: #2c3e50
 }
 
 h1,
@@ -62,4 +66,20 @@ li {
 a {
   color: #42b983;
 }
+
+.container {
+  background: #fff;
+  height: 600px;
+  border-radius: 0 0 5px 5px;
+}
+
+.col-md-4 {  
+  border-right: 1px solid rgba(0,0,0,.125);
+  min-height: 600px;
+}
+
+.col-md-8, .col-md-4 {
+  padding: 20px;
+}
+
 </style>
