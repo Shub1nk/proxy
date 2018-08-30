@@ -1,18 +1,24 @@
 <template>
   <div class="data-proxy-item">
-    <p><span class="data-proxy-item__props-title">id:</span><span  class="data-proxy-item__props-value">43</span></p>
-    <p><span class="data-proxy-item__props-title">host:</span><span  class="data-proxy-item__props-value">52.195.238.34</span></p>
-    <p><span class="data-proxy-item__props-title">port:</span><span  class="data-proxy-item__props-value">25148</span></p>
-    <p><span class="data-proxy-item__props-title">last_check_time:</span><span  class="data-proxy-item__props-value">2018-08-21</span></p>
-    <p><span class="data-proxy-item__props-title">busy_until:</span><span  class="data-proxy-item__props-value">2018-08-21</span></p>
-    <p><span class="data-proxy-item__props-title">response_time:</span><span  class="data-proxy-item__props-value">18.131</span></p>
-    <p><span class="data-proxy-item__props-title">chargeable:</span><span  class="data-proxy-item__props-value">false</span></p>      
+    <p><span class="data-proxy-item__props-title">id:</span><span  class="data-proxy-item__props-value">{{proxyInfo.id}}</span></p>
+    <p><span class="data-proxy-item__props-title">host:</span><span  class="data-proxy-item__props-value">{{proxyInfo.host}}</span></p>
+    <p><span class="data-proxy-item__props-title">country:</span><span  class="data-proxy-item__props-value">{{proxyInfo.country}}</span></p>
+    <p><span class="data-proxy-item__props-title">port:</span><span  class="data-proxy-item__props-value">{{proxyInfo.port}}</span></p>
+    <p><span class="data-proxy-item__props-title">last_check_time:</span><span  class="data-proxy-item__props-value">{{proxyInfo.last_check_time}}</span></p>
+    <p><span class="data-proxy-item__props-title">busy_until:</span><span  class="data-proxy-item__props-value">{{proxyInfo.busy_until}}</span></p>
+    <p><span class="data-proxy-item__props-title">response_time:</span><span  class="data-proxy-item__props-value">{{proxyInfo.response_time}}</span></p>
+    <p><span class="data-proxy-item__props-title">chargeable:</span><span  class="data-proxy-item__props-value">{{proxyInfo.chargeable}}</span></p>      
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
   export default {
-    name: 'dataProxy'
+    name: 'dataProxy',
+    computed: {
+      ...mapGetters(["proxyInfo"])
+    }
   }
 </script>
 

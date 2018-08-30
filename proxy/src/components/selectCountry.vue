@@ -1,7 +1,8 @@
 <template>
   <div class="select-country">
-    <select class="form-control form-control-sm">
-      <option v-for="country in countries" :key="country.item">{{country}}</option>
+    <select class="form-control form-control-sm" @change="onChange">
+      <option>Выберите страну</option>
+      <option v-for="country in countries" :key="country.item" >{{country}}</option>
       
     </select>
   </div>
@@ -19,7 +20,11 @@ import { mapGetters } from "vuex";
       ...mapGetters(['countries'])
     },
     methods: {
-      
+      onChange(e) {        
+        let country = e.target.value;
+        console.log(country);
+        this.$store.dispatch('setCountryPhoxy', country);
+      }
     }
   }
 </script>
