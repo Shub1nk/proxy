@@ -24,8 +24,6 @@ import { mapGetters } from "vuex";
     methods: {
       onChange(e) {        
         let country = e.target.value;
-        console.log('Счетчик');
-        console.log(this.proxyCountryCounter);
         this.$store.dispatch('setCountryPhoxy', country);
       }
     }

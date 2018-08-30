@@ -31,14 +31,15 @@ const mutations = {
 const actions = {
   getProxyList({ commit }) {
     axios
-      .get("https://proxyfordevelopers.com/api/proxies/?format=json")
+    .get("proxy.json")
       .then(response => {
         commit("UPDATE_LIST_PROXY", response.data);
       });
   },
   getCountryList({ commit }) {
     axios
-      .get("https://proxyfordevelopers.com/api/proxies/?format=json")
+      // .get("https://proxyfordevelopers.com/api/proxies/?format=json")
+      .get("proxy.json")
       .then(response => {
         let countryObj = {};
         let proxyList = response.data;

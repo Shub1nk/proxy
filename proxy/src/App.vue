@@ -14,31 +14,21 @@
 
 <script>
 import axios from "axios";
-import selectCountry from './components/selectCountry';
-import dataProxy from './components/dataProxy';
-import listProxyType from './components/listProxyType';
-import { mapGetters, mapActions } from 'vuex';
+import selectCountry from "./components/selectCountry";
+import dataProxy from "./components/dataProxy";
+import listProxyType from "./components/listProxyType";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "app",  
+  name: "app",
   created() {
-    this.store.dispatch('getProxyList');
+    this.store.dispatch("getProxyList");
   },
-  // mounted() {
-    // axios
-      // .get("https://proxyfordevelopers.com/api/proxies/?format=json")
-      // .then(response => {
-        // this.$store.listProxy = response.data});        
-        //  console.log(this.$store.getters.listProxy);
-      // },
-
   components: {
     selectCountry,
     dataProxy,
     listProxyType
   }
-  
-  
 };
 </script>
 
@@ -49,11 +39,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px;  
 }
 
 body {
-  background: #2c3e50
+  background: #2c3e50;
 }
 
 h1,
@@ -81,13 +71,32 @@ a {
   border-radius: 0 0 5px 5px;
 }
 
-.col-md-4 {  
-  border-right: 1px solid rgba(0,0,0,.125);
+.col-md-4 {
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
   min-height: 600px;
 }
 
-.col-md-8, .col-md-4 {
+.col-md-8,
+.col-md-4 {
   padding: 20px;
 }
 
+@media screen and (max-width: 770px) {
+  .col-md-8,
+  .col-md-4 {
+    width: 100%;
+    clear: both;
+    background: #fff;
+    display: block;
+  }
+
+  .container {
+    min-height: 1080px;
+    margin-bottom: 20px;
+  }
+
+  .row {
+    
+  }
+}
 </style>
