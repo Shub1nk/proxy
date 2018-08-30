@@ -6,7 +6,8 @@ const state = {
   listProxy: "",
   countries: "",
   proxyInfo: {},
-  proxyCountry: []
+  proxyCountry: [],
+  proxyCountryCounter: 0
 };
 
 const mutations = {
@@ -21,7 +22,10 @@ const mutations = {
   },
   UPDATE_PROXY_COUNTRY(state, payload) {
     state.proxyCountry = payload;
-  }
+  },
+  UPDATE_PROXY_COUNTRY_COUNTER(state, payload) {
+    state.proxyCountry = payload;
+  },
 };
 
 const actions = {
@@ -52,8 +56,6 @@ const actions = {
           // countryObj[key] += 1;
         }
 
-        console.log(countryObj);
-
         let countryList = Object.keys(countryObj);
 
         commit("UPDATE_LIST_COUNTRY", countryList);
@@ -62,23 +64,26 @@ const actions = {
   setProxyInfo({ commit }, id) {
     let proxyList = state.listProxy;
 
-    console.log(proxyList);
-
     let currentProxyInfo = proxyList.find(item => item.id === id);
-    console.log(currentProxyInfo);
     commit("UPDATE_PROXY_INFO", currentProxyInfo);
   },
   setCountryPhoxy({commit}, country) {
     let listCountryProxy = state.listProxy.filter(item => item.country === country)
     commit("UPDATE_PROXY_COUNTRY", listCountryProxy);
-  }
+  },
+  // setProxyCountryCounter({commit}) {
+  //   let counter = state.proxyCountry.length;
+  //   console.log(counter);
+  //   commit('UPDATE_PROXY_COUNTRY_COUNTER', counter);
+  // }
 };
 
 const getters = {
   listProxy: state => state.listProxy,
   countries: state => state.countries,
   proxyInfo: state => state.proxyInfo,
-  proxyCountry: state => state.proxyCountry
+  proxyCountry: state => state.proxyCountry,
+  proxyCountryCounter: state => state.proxyCountry.length
 
 };
 

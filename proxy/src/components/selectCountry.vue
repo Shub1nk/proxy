@@ -2,14 +2,16 @@
   <div class="select-country">
     <select class="form-control form-control-sm" @change="onChange">
       <option>Выберите страну</option>
-      <option v-for="country in countries" :key="country.item" >{{country}}</option>
-      
+      <option v-for="country in countries" :key="country.item" >{{country}}</option>      
     </select>
+    <p>найдено прокси ({{proxyCountryCounter}})</p>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+
+//  - найдено прокси ({{proxyCountryCounter}})
 
   export default {
     name: 'selectCountry',
@@ -17,12 +19,13 @@ import { mapGetters } from "vuex";
       this.$store.dispatch('getCountryList');
     },
     computed: {
-      ...mapGetters(['countries'])
+      ...mapGetters(['countries', 'proxyCountryCounter'])
     },
     methods: {
       onChange(e) {        
         let country = e.target.value;
-        console.log(country);
+        console.log('Счетчик');
+        console.log(this.proxyCountryCounter);
         this.$store.dispatch('setCountryPhoxy', country);
       }
     }
@@ -32,5 +35,9 @@ import { mapGetters } from "vuex";
 <style scoped>
   .select-country {
     margin-bottom: 10px;
+  }
+
+  .select-country p {
+    font-size: 10px;
   }
 </style>
