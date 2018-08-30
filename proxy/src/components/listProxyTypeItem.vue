@@ -53,9 +53,9 @@ export default {
   },
   methods: {
     viewCurrentProxy(id, e) {
-      this.isActive = !this.isActive;
-      alert(e.target);
-      e.target.className = this.isActive ? "active" : "";
+      // this.isActive = !this.isActive;
+      // alert(e.target);
+      // e.target.className = this.isActive ? "active" : "";
       this.$store.dispatch("setProxyInfo", id);
     }
   }
