@@ -6,7 +6,7 @@
       :class="{active: itemProxy.isActive, 'list-group-item': true}"
       @click="viewCurrentProxy(itemProxy, $event)"
       >
-        id-{{ itemProxy.id }}. host: {{itemProxy.host}} proxy_type = {{itemProxy.proxy_type}}
+        <b>id:</b> {{ itemProxy.id }} <b>host:</b> {{itemProxy.host}} <b>proxy_type</b> = {{itemProxy.proxy_type}}
     </li>  
     
     <h4 v-if="proxyCountryCounter > 0">alive == true</h4>
@@ -15,7 +15,7 @@
       :class="{active: item.isActive, 'list-group-item': true}"
       @click="viewCurrentProxy(item, $event)"
       >
-        id-{{ item.id }}. host: {{item.host}} alive = {{item.alive}}
+        <b>id:</b> {{ item.id }} <b>host:</b> {{item.host}} <b>alive</b> = {{item.alive}}
     </li>
   </div>
 </template>
@@ -46,7 +46,6 @@ export default {
   },
   methods: {
     viewCurrentProxy(itemProxy, e) {
-      console.log(e);
       document.querySelectorAll('li').forEach(item => item.classList.remove('active'));
       e.target.classList.toggle('active');
       this.$store.dispatch("setProxyInfo", itemProxy.id);
@@ -66,5 +65,6 @@ p {
 
 li {
   font-size: 12px;
+  cursor: pointer;
 }
 </style>
