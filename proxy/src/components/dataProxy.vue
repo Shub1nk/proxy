@@ -1,5 +1,5 @@
 <template>
-  <div class="data-proxy-item">
+  <div v-if="proxyCountryCounter > 0" class="data-proxy-item">
     <p><span class="data-proxy-item__props-title">id:</span><span  class="data-proxy-item__props-value">{{proxyInfo.id}}</span></p>
     <p><span class="data-proxy-item__props-title">host:</span><span  class="data-proxy-item__props-value">{{proxyInfo.host}}</span></p>
     <p><span class="data-proxy-item__props-title">port:</span><span  class="data-proxy-item__props-value">{{proxyInfo.port}}</span></p>
@@ -19,7 +19,7 @@ import { mapGetters } from 'vuex'
   export default {
     name: 'dataProxy',
     computed: {
-      ...mapGetters(["proxyInfo"])
+      ...mapGetters(["proxyInfo", 'proxyCountryCounter'])
     }
   }
 </script>

@@ -68,7 +68,8 @@ a {
 .container {
   background: #fff;
   height: 600px;
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
+  margin: 20px auto;
 }
 
 .col-md-4 {
