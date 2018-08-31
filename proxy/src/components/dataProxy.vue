@@ -1,27 +1,39 @@
 <template>
-  <div v-if="proxyCountryCounter > 0" class="data-proxy-item">
-    <p><span class="data-proxy-item__props-title">id:</span><span  class="data-proxy-item__props-value">{{proxyInfo.id}}</span></p>
-    <p><span class="data-proxy-item__props-title">host:</span><span  class="data-proxy-item__props-value">{{proxyInfo.host}}</span></p>
-    <p><span class="data-proxy-item__props-title">port:</span><span  class="data-proxy-item__props-value">{{proxyInfo.port}}</span></p>
-    <p><span class="data-proxy-item__props-title">country:</span><span  class="data-proxy-item__props-value">{{proxyInfo.country}}</span></p>
-    <p><span class="data-proxy-item__props-title">alive:</span><span  class="data-proxy-item__props-value">{{proxyInfo.alive}}</span></p>
-    <p><span class="data-proxy-item__props-title">last_check_time:</span><span  class="data-proxy-item__props-value">{{proxyInfo.last_check_time}}</span></p>
-    <p><span class="data-proxy-item__props-title">busy_until:</span><span  class="data-proxy-item__props-value">{{proxyInfo.busy_until}}</span></p>
-    <p><span class="data-proxy-item__props-title">proxy_type:</span><span  class="data-proxy-item__props-value">{{proxyInfo.proxy_type}}</span></p>
-    <p><span class="data-proxy-item__props-title">response_time:</span><span  class="data-proxy-item__props-value">{{proxyInfo.response_time}}</span></p>
-    <p><span class="data-proxy-item__props-title">chargeable:</span><span  class="data-proxy-item__props-value">{{proxyInfo.chargeable}}</span></p>      
+  <div>
+    <h3 v-if="!proxyCountryCounter">Данные появится только после выбора страны</h3>
+    <div v-if="proxyCountryCounter > 0" class="data-proxy-item">
+      <h2>Подробная информация</h2>
+      <p><span class="data-proxy-item__props-title">id:</span><span  class="data-proxy-item__props-value">{{proxyInfo.id}}</span></p>
+      <p><span class="data-proxy-item__props-title">host:</span><span  class="data-proxy-item__props-value">{{proxyInfo.host}}</span></p>
+      <p><span class="data-proxy-item__props-title">port:</span><span  class="data-proxy-item__props-value">{{proxyInfo.port}}</span></p>
+      <p><span class="data-proxy-item__props-title">country:</span><span  class="data-proxy-item__props-value">{{proxyInfo.country}}</span></p>
+      <p><span class="data-proxy-item__props-title">alive:</span><span  class="data-proxy-item__props-value">{{proxyInfo.alive}}</span></p>
+      <p><span class="data-proxy-item__props-title">last_check_time:</span><span  class="data-proxy-item__props-value">{{proxyInfo.last_check_time}}</span></p>
+      <p><span class="data-proxy-item__props-title">busy_until:</span><span  class="data-proxy-item__props-value">{{proxyInfo.busy_until}}</span></p>
+      <p><span class="data-proxy-item__props-title">proxy_type:</span><span  class="data-proxy-item__props-value">{{proxyInfo.proxy_type}}</span></p>
+      <p><span class="data-proxy-item__props-title">response_time:</span><span  class="data-proxy-item__props-value">{{proxyInfo.response_time}}</span></p>
+      <p><span class="data-proxy-item__props-title">chargeable:</span><span  class="data-proxy-item__props-value">{{proxyInfo.chargeable}}</span></p>      
+      <h4>Что еще можно доработать:</h4>
+      <ul class="tasks">
+        <ol><span>1. </span>Доработать фильтры по параметрам <b>proxy_type</b> (возрастание, убывание, по значению параметра) и <b>alive</b> (по состоянию true, false через чекбокс)</ol>
+        <ol><span>2. </span>Каждый из фильтров сформировать как отдельный компонент, возможно это решит проблему с дублированием ключей. Альтернативное решение: сделать для каждого фильтра свои состояния в Vuex и передавать в компоненты</ol>
+        <ol><span>3. </span>Счетчик найденых прокси вывести в option в формате <b>RU - (37)</b>. Реализация была, но счетчик работал неверно, отказался от данного решения. Доработать метод, чтобы для каждого числа отдельно аккумулировался счетчик, возможно через <b>reduce</b></ol>
+        <ol><span>4. </span>Изменение фона активного пункта работает, но не уверен, что выбран правильный подход работы с компонентной архитектурой <i>(Посмотреть какие еще есть решения)</i></ol>
+        <ol><span>5. </span>Сделать рефакторинг: убрать ненужные фрагменты кода, повторяющиеся фрагменты реализовать через функции</ol>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
-  export default {
-    name: 'dataProxy',
-    computed: {
-      ...mapGetters(["proxyInfo", 'proxyCountryCounter'])
-    }
+export default {
+  name: "dataProxy",
+  computed: {
+    ...mapGetters(["proxyInfo", "proxyCountryCounter"])
   }
+};
 </script>
 
 <style scoped>
@@ -47,5 +59,21 @@ import { mapGetters } from 'vuex'
   text-align: left;
 }
 
+h3 {
+  text-align: center;
+}
 
+i {
+  font-size: 12px;
+  color: #999;
+}
+
+.tasks {
+  height: 200px;
+  overflow: auto;
+}
+
+.tasks ol {
+  padding: 0;
+}
 </style>

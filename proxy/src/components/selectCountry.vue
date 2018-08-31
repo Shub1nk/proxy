@@ -9,33 +9,31 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
-//  - найдено прокси ({{proxyCountryCounter}})
-
-  export default {
-    name: 'selectCountry',
-    created() {
-      this.$store.dispatch('getCountryList');
-    },
-    computed: {
-      ...mapGetters(['countries', 'proxyCountryCounter'])
-    },
-    methods: {
-      onChange(e) {        
-        let country = e.target.value;
-        this.$store.dispatch('setCountryPhoxy', country);
-      }
+export default {
+  name: "selectCountry",
+  created() {
+    this.$store.dispatch("getCountryList");
+  },
+  computed: {
+    ...mapGetters(["countries", "proxyCountryCounter"])
+  },
+  methods: {
+    onChange(e) {
+      let country = e.target.value;
+      this.$store.dispatch("setCountryPhoxy", country);
     }
   }
+};
 </script>
 
 <style scoped>
-  .select-country {
-    margin-bottom: 10px;
-  }
+.select-country {
+  margin-bottom: 10px;
+}
 
-  .select-country p {
-    font-size: 10px;
-  }
+.select-country p {
+  font-size: 10px;
+}
 </style>
