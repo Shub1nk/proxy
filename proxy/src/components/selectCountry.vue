@@ -4,7 +4,7 @@
       <option>Выберите страну</option>
       <option v-for="country in countries" :key="country.item" >{{country}}</option>      
     </select>
-    <p>найдено прокси ({{proxyCountryCounter}})</p>
+    <p v-if="proxyCountryCounter > 0">найдено прокси ({{proxyCountryCounter}})</p>
   </div>
 </template>
 

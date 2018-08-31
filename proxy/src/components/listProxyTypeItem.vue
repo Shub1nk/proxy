@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>proxy_type по убыванию</h4>
+    <h4 v-if="proxyCountryCounter > 0">proxy_type по убыванию</h4>
     <li
       v-for="itemProxy in proxyType" :key="itemProxy.id"
       class="list-group-item"
@@ -10,7 +10,7 @@
         id-{{ itemProxy.id }}. host: {{itemProxy.host}} proxy_type = {{itemProxy.proxy_type}}
     </li>  
     
-    <h4>alive == true</h4>
+    <h4 v-if="proxyCountryCounter > 0">alive == true</h4>
     <li
       v-for="item in alive" :key="item.id"
       class="list-group-item"
@@ -36,7 +36,7 @@ export default {
     this.$store.dispatch("getProxyList");
   },
   computed: {
-    ...mapGetters(["proxyCountry"]),
+    ...mapGetters(["proxyCountry", 'proxyCountryCounter']),
     proxyType() {
       let proxyType2 = this.proxyCountry.filter(item => item.proxy_type === 2);
       let proxyType1 = this.proxyCountry.filter(item => item.proxy_type === 1);
