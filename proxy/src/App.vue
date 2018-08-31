@@ -22,7 +22,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "app",
   created() {
-    this.store.dispatch("getProxyList");
+    this.store.dispatch("getProxyList");    
   },
   components: {
     selectCountry,
@@ -67,7 +67,7 @@ a {
 
 .container {
   background: #fff;
-  height: 600px;
+  height: 800px;
   border-radius: 5px;
   margin: 20px auto;
 }

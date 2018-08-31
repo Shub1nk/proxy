@@ -1,13 +1,10 @@
 <template>
-  <ul class="list-group">
+  <div>
     <list-proxy-type-item/>
-    <!-- <li class="list-group-item active">Cras justo odio</li> -->
-      
-  </ul>
+  </div>
 </template>
 
 <script>
-// import { mapGetters } from "vuex";
 import listProxyTypeItem from './listProxyTypeItem'
 
 export default {
