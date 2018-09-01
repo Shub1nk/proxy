@@ -10,7 +10,7 @@
           <b>id:</b> {{ itemProxy.id }} <b>host:</b> {{itemProxy.host}} <b>proxy_type</b> = {{itemProxy.proxy_type}}
       </li>  
     </ul>
-    <h4 v-if="proxyCountryCounter > 0">alive == true</h4>
+    <h4 v-if="proxyCountryCounter > 0"><input ref="isAlive" v-model="aliveStatus" type="checkbox" checked="checked"> alive</h4>
     <ul class="list-group filter__alive">
       <li
         v-for="item in alive" :key="item.id"
@@ -31,6 +31,11 @@ export default {
   created() {
     this.$store.dispatch("getProxyList");
   },
+  data() {
+    return {
+      aliveStatus: true
+    }
+  },
   computed: {
     ...mapGetters(["proxyCountry", "proxyCountryCounter"]),
     //TODO: Реализовать нормальные метод сортировки
@@ -38,11 +43,13 @@ export default {
       let proxyType2 = this.proxyCountry.filter(item => item.proxy_type === 2);
       let proxyType1 = this.proxyCountry.filter(item => item.proxy_type === 1);
       let proxyType0 = this.proxyCountry.filter(item => item.proxy_type === 0);
-      let proxyTypeNull = this.proxyCountry.filter(item => item.proxy_type === undefined);
+      let proxyTypeNull = this.proxyCountry.filter(
+        item => item.proxy_type === undefined
+      );
       return [...proxyType2, ...proxyType1, ...proxyType0, ...proxyTypeNull];
     },
     alive() {
-      let isAlive = this.proxyCountry.filter(item => item.alive === true);
+      let isAlive = this.proxyCountry.filter(item => item.alive === this.aliveStatus);
       return isAlive;
     }
     //---------------------------------------------------
