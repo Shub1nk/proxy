@@ -22,6 +22,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "app",
   created() {
+    console.log(this.store.dispatch)
     this.store.dispatch("getProxyList");    
   },
   components: {
@@ -94,10 +95,6 @@ a {
   .container {
     min-height: 1080px;
     margin-bottom: 20px;
-  }
-
-  .row {
-    
   }
 }
 </style>

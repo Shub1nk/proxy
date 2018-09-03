@@ -47,12 +47,18 @@ const actions = {
 
         for (let i = 0; i < proxyList.length; i++) {
           let key = proxyList[i].country;
-          countryObj[key] = true;
+          countryObj[key] = (countryObj[key] === undefined) ? 1 : countryObj[key] + 1;
         }
 
-        let countryList = Object.keys(countryObj);
+        let countryArr = [];
 
-        commit("UPDATE_LIST_COUNTRY", countryList);
+        for (var key in countryObj) {
+          countryArr.push({
+            name: key,
+            count: countryObj[key]
+          })
+        }
+        commit("UPDATE_LIST_COUNTRY", countryArr);
       });
   },
   setProxyInfo({ commit }, id) {

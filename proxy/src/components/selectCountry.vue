@@ -2,9 +2,9 @@
   <div class="select-country">
     <select class="form-control form-control-sm" @change="onChange">
       <option>Выберите страну</option>
-      <option v-for="country in countries" :key="country.item" >{{country}}</option>      
+      <option v-for="country in countries" :key="country.item" >{{country.name}} - ({{country.count}})</option>      
     </select>
-    <p v-if="proxyCountryCounter > 0">найдено прокси ({{proxyCountryCounter}})</p>
+    <!-- <p v-if="proxyCountryCounter > 0">найдено прокси ({{proxyCountryCounter}})</p> -->
   </div>
 </template>
 
@@ -22,7 +22,8 @@ export default {
   methods: {
     onChange(e) {
       let country = e.target.value;
-      this.$store.dispatch("setCountryPhoxy", country);
+      let countryName = country.split(' ')[0];
+      this.$store.dispatch("setCountryPhoxy", countryName);
     }
   }
 };
