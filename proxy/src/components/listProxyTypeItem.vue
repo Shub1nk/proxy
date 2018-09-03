@@ -4,11 +4,11 @@
     <div class="center" v-if="proxyCountryCounter > 0">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="S" v-model="proxy_type">
-        <label class="form-check-label" for="inlineRadio1">S</label>
+        <label class="form-check-label" for="inlineRadio1">Sort</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="-S" v-model="proxy_type">
-        <label class="form-check-label" for="inlineRadio2">-S</label>
+        <label class="form-check-label" for="inlineRadio2">-Sort</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="0" v-model="proxy_type">
@@ -80,33 +80,25 @@ export default {
       if (this.proxy_type !== "S" && this.proxy_type !== "-S") {
         console.log("число");
         console.log("массив стран", this.proxyCountry);
-        console.log('тип прокси', this.proxy_type);
-        let test = this.proxyCountry.filter(item => item.proxy_type === Number(this.proxy_type));
+        console.log("тип прокси", this.proxy_type);
+        let test = this.proxyCountry.filter(
+          item => item.proxy_type === Number(this.proxy_type)
+        );
         console.log(test);
         return test;
-        // let proxyType = this.proxyCountry.filter(item => {
-          // console.log("Тип входных данных", typeof item.proxy_type);
-          // item.proxy_type === Number(this.proxy_type);
-        // });
-        // console.log("тип данных", typeof this.proxy_type);
-        // console.log(proxyType);
-        // return proxyType;
-      } 
-      // let proxyType = this.proxyCountry.filter(item => {
-      //   console.log("Тип входных данных", typeof item.proxy_type)
-      //   item.proxy_type === this.proxy_type
-      //   });
-      // console.log('тип данных', typeof this.proxy_type);
-      // console.log(proxyType)
-      // return proxyType;
-
-      // let proxyType2 = this.proxyCountry.filter(item => item.proxy_type === 2);
-      // let proxyType1 = this.proxyCountry.filter(item => item.proxy_type === 1);
-      // let proxyType0 = this.proxyCountry.filter(item => item.proxy_type === 0);
-      // let proxyTypeNull = this.proxyCountry.filter(
-      // item => item.proxy_type === undefined
-      // );
-      // return [...proxyType2, ...proxyType1, ...proxyType0, ...proxyTypeNull];
+      } else if (this.proxy_type === "S") {
+        let proxyType2 = this.proxyCountry.filter(item => item.proxy_type === 2);
+        let proxyType1 = this.proxyCountry.filter(item => item.proxy_type === 1);
+        let proxyType0 = this.proxyCountry.filter(item => item.proxy_type === 0);
+        let proxyTypeNull = this.proxyCountry.filter(item => item.proxy_type === undefined);
+        return [...proxyType2, ...proxyType1, ...proxyType0, ...proxyTypeNull];
+      } else {
+        let proxyType2 = this.proxyCountry.filter(item => item.proxy_type === 2);
+        let proxyType1 = this.proxyCountry.filter(item => item.proxy_type === 1);
+        let proxyType0 = this.proxyCountry.filter(item => item.proxy_type === 0);
+        let proxyTypeNull = this.proxyCountry.filter(item => item.proxy_type === undefined);
+        return [...proxyType2, ...proxyType1, ...proxyType0, ...proxyTypeNull].reverse();
+      }
     },
     alive() {
       let isAlive = this.proxyCountry.filter(
