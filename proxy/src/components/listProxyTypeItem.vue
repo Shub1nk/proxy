@@ -3,7 +3,7 @@
     <!-- <h4 v-if="proxyCountryCounter > 0">proxy_type по убыванию</h4> -->
     <div class="center" v-if="proxyCountryCounter > 0">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="S" v-model="proxy_type" checked>
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="S" v-model="proxy_type" aria-checked="checked">
         <label class="form-check-label" for="inlineRadio1">Sort</label>
       </div>
       <div class="form-check form-check-inline">
@@ -22,7 +22,7 @@
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="2" v-model="proxy_type">
         <label class="form-check-label" for="inlineRadio5">2</label>
       </div>
-      <p>{{proxy_type}}</p>
+      <!-- <p>{{proxy_type}}</p> -->
       <!-- <div class="btn-group mr-2" role="group" aria-label="First group"> -->
         <!-- <input type="radio" value="-S" v-model="proxy_type"> -->
         <!-- <label>-S</label> -->
@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       aliveStatus: true,
-      proxy_type: ""
+      proxy_type: "S"
     };
   },
   computed: {
