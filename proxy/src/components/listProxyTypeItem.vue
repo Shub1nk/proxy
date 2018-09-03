@@ -3,7 +3,7 @@
     <!-- <h4 v-if="proxyCountryCounter > 0">proxy_type по убыванию</h4> -->
     <div class="center" v-if="proxyCountryCounter > 0">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="S" v-model="proxy_type">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="S" v-model="proxy_type" checked>
         <label class="form-check-label" for="inlineRadio1">Sort</label>
       </div>
       <div class="form-check form-check-inline">
@@ -78,26 +78,15 @@ export default {
     //TODO: Реализовать нормальные методы сортировки
     proxyType() {
       if (this.proxy_type !== "S" && this.proxy_type !== "-S") {
-        console.log("число");
-        console.log("массив стран", this.proxyCountry);
-        console.log("тип прокси", this.proxy_type);
-        let test = this.proxyCountry.filter(
-          item => item.proxy_type === Number(this.proxy_type)
-        );
-        console.log(test);
-        return test;
+        return this.proxyCountry.filter(item => item.proxy_type === Number(this.proxy_type));
       } else if (this.proxy_type === "S") {
-        let proxyType2 = this.proxyCountry.filter(item => item.proxy_type === 2);
-        let proxyType1 = this.proxyCountry.filter(item => item.proxy_type === 1);
-        let proxyType0 = this.proxyCountry.filter(item => item.proxy_type === 0);
-        let proxyTypeNull = this.proxyCountry.filter(item => item.proxy_type === undefined);
-        return [...proxyType2, ...proxyType1, ...proxyType0, ...proxyTypeNull];
+        return this.proxyCountry.sort((a, b) => {
+            return Number(b.proxy_type) - Number(a.proxy_type);
+        });
       } else {
-        let proxyType2 = this.proxyCountry.filter(item => item.proxy_type === 2);
-        let proxyType1 = this.proxyCountry.filter(item => item.proxy_type === 1);
-        let proxyType0 = this.proxyCountry.filter(item => item.proxy_type === 0);
-        let proxyTypeNull = this.proxyCountry.filter(item => item.proxy_type === undefined);
-        return [...proxyType2, ...proxyType1, ...proxyType0, ...proxyTypeNull].reverse();
+        return this.proxyCountry.sort((a, b) => {
+            return Number(a.proxy_type) - Number(b.proxy_type);
+        });
       }
     },
     alive() {
