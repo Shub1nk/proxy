@@ -22,7 +22,8 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "app",
   created() {
-    this.$store.dispatch("getProxyList");    
+    this.$store.dispatch("getProxyList"); 
+    this.$store.dispatch("getCountryList");   
   },
   components: {
     selectCountry,

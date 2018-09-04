@@ -37,13 +37,11 @@ const actions = {
       });
   },
   getCountryList({ commit }) {
-    axios
       // .get("https://proxyfordevelopers.com/api/proxies/?format=json")
       //TODO: Убрать лишний запрос. Данные можно получать из общего списка прокси
-      .get("proxy.json")
-      .then(response => {
+        console.log(this.state.listProxy)
         let countryObj = {};
-        let proxyList = response.data;
+        let proxyList = state.listProxy;
 
         for (let i = 0; i < proxyList.length; i++) {
           let key = proxyList[i].country;
@@ -59,7 +57,6 @@ const actions = {
           })
         }
         commit("UPDATE_LIST_COUNTRY", countryArr);
-      });
   },
   setProxyInfo({ commit }, id) {
     let proxyList = state.listProxy;
