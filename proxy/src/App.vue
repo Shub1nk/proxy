@@ -22,8 +22,12 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "app",
   created() {
-    this.$store.dispatch("getProxyList"); 
-    this.$store.dispatch("getCountryList");   
+
+
+    this.$store.dispatch("getProxyList");
+
+    // this.$store.dispatch("getProxyList");
+    // setTimeout(() => this.$store.dispatch("getCountryList"), 1000);
   },
   components: {
     selectCountry,
@@ -40,7 +44,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;  
+  margin-top: 60px;
 }
 
 body {
